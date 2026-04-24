@@ -101,3 +101,19 @@ class Car {
         }
     }
 }
+
+////////////////////////////////////////////car factory ///////////////////////////////////
+class CarFactory {
+    public enum EngineType { GAS, ELECTRIC, HYBRID }
+
+    public static Car createCar(EngineType type) {
+        Engine engine;
+        switch (type) {
+            case GAS: engine = new GasolineEngine(); break;
+            case ELECTRIC: engine = new ElectronicEngine(); break;
+            case HYBRID: engine = new MixedHybridEngine(); break;
+            default: throw new IllegalArgumentException("Unknown Engine Type");
+        }
+        return new Car(engine);
+    }
+}
