@@ -1,6 +1,31 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        // 1. Create a Hybrid Car
+        System.out.println("--- Testing Hybrid Car Logic ---");
+        Car myCar = CarFactory.createCar(CarFactory.EngineType.HYBRID);
+
+        myCar.start();
+        myCar.accelerate(); // 20
+        myCar.accelerate(); // 40
+        myCar.accelerate(); // 60 -> Should switch to Gas mode in output
+
+        // 2. Test Stop Safety
+        myCar.stop();
+
+        // 3. Brake to 0 and Stop
+        myCar.brake(); // 40
+        myCar.brake(); // 20
+        myCar.brake(); // 0
+        myCar.stop();
+
+        // 4. Test Engine Replacement
+        System.out.println("\n--- Testing Engine Replacement ---");
+        myCar.setEngine(new ElectronicEngine());
+        myCar.start();
+        myCar.accelerate();
+        myCar.stop(); // Error expected
+        myCar.brake();
+        myCar.stop();
     }
 }
 
